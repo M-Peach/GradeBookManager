@@ -8,24 +8,18 @@ namespace GradeBookManager
 {
     public class Student
     {
-        public static List<Dictionary<string, double>> studentGrades = new List<Dictionary<string, double>>();
+        public static List<Assignment> assignments = new List<Assignment>();
 
-        public static void ShowStudents(int userSelection)
-        {
-            Console.WriteLine(studentGrades[userSelection]);
-        }
-        public static void AddStudents(int userSelection)
-        {
-            if(userSelection == 0)
-            {
-                Console.WriteLine("Enter Student Name:");
-                string studentName = Console.ReadLine();
+        public string assignment { get; set; }
 
-                Console.WriteLine("Enter Student Grade:");
-                double studentGrade = double.Parse(Console.ReadLine());
 
-                studentGrades.Add(studentName, studentGrade);
-            }
+
+        public static Dictionary<string, double> NameGrade = new Dictionary<string, double>();
+
+        public string name { get; set; }
+
+        public double grade { get; set; }
+
 
     }
 }

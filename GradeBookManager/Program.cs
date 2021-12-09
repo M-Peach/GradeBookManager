@@ -8,9 +8,9 @@ namespace GradeBookManager
 {
     public class Program
     {
-        Student students = new Student();
+        StudentArchive students = new StudentArchive();
 
-        Classroom classooms = new Classroom();
+        ClassroomArchive classooms = new ClassroomArchive();
 
         Menu Menu = new Menu();
 
@@ -28,15 +28,15 @@ namespace GradeBookManager
             switch (userSelection)
             {
                 case 1:
-                    Classroom.ShowClassrooms();
+                    ClassroomArchive.ShowClassrooms();
                     break;
 
                 case 2:
-                    Classroom.AddClassrooms();
+                    AddClassroom();
                     break;
 
                 case 3:
-                    Classroom.RemoveClassrooms();
+                    ClassroomArchive.RemoveClassrooms();
                     break;
 
                 case 4:
@@ -50,20 +50,45 @@ namespace GradeBookManager
             switch (userInput)
             {
                 case 1:
-                    Student.ShowStudents(userSelection);
+                    StudentArchive.ShowStudents(userSelection);
                     break;
 
                 case 2:
-                    Student.AddStudents(userSelection);
+                    StudentArchive.AddStudents(userSelection);
                     break;
 
                 case 3:
-                    Classroom.RemoveClassrooms();
+                    ClassroomArchive.RemoveClassrooms();
                     break;
 
                 case 4:
                     Menu.ClassroomSelectionMenu();
                     break;
+            }
+        }
+
+        /// --- CLASSROOM METHODS --- ///
+        public static void AddClassroom()
+        {
+            Classroom classroom = new Classroom();
+
+            Console.Clear();
+            Console.WriteLine("Enter Class Name:");
+
+            string userInput = Console.ReadLine();
+
+            classroom.ClassName = userInput;
+
+            classrooms.Add(classroom);
+        }
+
+        public static void ShowClassroom()
+        {
+            Console.Clear();
+
+            foreach (Classroom classroom in classrooms)
+            {
+                Console.WriteLine(classroom.ClassName);
             }
         }
     }
