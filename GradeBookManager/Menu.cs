@@ -94,7 +94,7 @@ namespace GradeBookManager
 
             int userInput = int.Parse(Console.ReadLine());
 
-            Program.CheckClassroomSelection(userInput, userSelection);
+            Program.CheckClassroomSelection(userInput);
            
 
         }

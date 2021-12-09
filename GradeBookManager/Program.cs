@@ -12,6 +12,7 @@ namespace GradeBookManager
 
         public static void Main()
         {
+
             Menu.MainMenu();
 
 
@@ -39,7 +40,7 @@ namespace GradeBookManager
             }
         }
 
-       public static void CheckClassroomSelection(int userInput, int userSelection)
+       public static void CheckClassroomSelection(int userInput)
         {
             switch (userInput)
             {
@@ -48,7 +49,7 @@ namespace GradeBookManager
                     break;
 
                 case 2:
-                    AddStudent(userSelection);
+                    AddStudent();
                     break;
 
                 case 3:
@@ -64,16 +65,17 @@ namespace GradeBookManager
         /// --- CLASSROOM METHODS --- ///
         public static void AddClassroom()
         {
-            Classroom classroom = new Classroom();
+                Classroom classroom = new Classroom();
 
-            Console.Clear();
-            Console.WriteLine("Enter Class Name:");
+                Console.Clear();
+                Console.WriteLine("Enter Class Name:");
 
-            string userInput = Console.ReadLine();
+                string userInput = Console.ReadLine();
 
-            classroom.ClassName = userInput;
+                classroom.ClassName = userInput;
 
-            classrooms.Add(classroom);
+
+                classrooms.Add(classroom);       
         }
 
         public static void ShowClassroom()
@@ -112,15 +114,11 @@ namespace GradeBookManager
 
         /// --- STUDENT METHODS --- ///
         
-        public static void AddStudent(int userSelection)
+        public static void AddStudent()
         {
             Student student = new Student();
 
-            Classroom classroom =  Classroom(student);
-
             Console.Clear();
-
-
 
                 Console.WriteLine("Enter Student Name:");
 
@@ -128,29 +126,19 @@ namespace GradeBookManager
 
                 student.Name = name;
 
-                Console.WriteLine("Enter Student Grade:");
-
-                double grade = double.Parse(Console.ReadLine());
-
-                student.Grade = grade;
-
-
-                Classroom.NameGrade.Add(student.Name, student.Grade);
-            
-            
-
+                 Classroom.students.Add(student);
         }
 
         public static void ShowStudent()
         {
             Console.Clear();
 
-            for (int i = 0; i < Classroom.NameGrade.Count; i++)
+            for (int i = 0; i < Classroom.students.Count; i++)
             {
-                Console.WriteLine($"ID {i} : {string.Join(Environment.NewLine, Classroom.NameGrade)}");
+                Console.WriteLine($"ID {i} : {string.Join(Environment.NewLine, Classroom.students)}");
+                
             }
         }
-
 
     }
 }
