@@ -8,11 +8,13 @@ namespace GradeBookManager
 {
     public class Program
     {
-        Students students = new Students();
+        Student students = new Student();
 
-        Classrooms classooms = new Classrooms();
+        Classroom classooms = new Classroom();
 
         Menu Menu = new Menu();
+
+        public static List<Classroom> classrooms = new List<Classroom>();
 
         public static void Main()
         {
@@ -21,24 +23,46 @@ namespace GradeBookManager
 
         }
 
-        public static void CheckSelection(int userSelection)
+        public static void CheckMainSelection(int userSelection)
         {
             switch (userSelection)
             {
                 case 1:
-                    Classrooms.ShowClassrooms();
+                    Classroom.ShowClassrooms();
                     break;
 
                 case 2:
-                    Classrooms.AddClassrooms();
+                    Classroom.AddClassrooms();
                     break;
 
                 case 3:
-                    Classrooms.RemoveClassrooms();
+                    Classroom.RemoveClassrooms();
                     break;
 
                 case 4:
-                    Menu.DetailsMenu();
+                    Menu.ClassroomSelectionMenu();
+                    break;
+            }
+        }
+
+        public static void CheckClassroomSelection(int userInput, int userSelection)
+        {
+            switch (userInput)
+            {
+                case 1:
+                    Student.ShowStudents(userSelection);
+                    break;
+
+                case 2:
+                    Student.AddStudents(userSelection);
+                    break;
+
+                case 3:
+                    Classroom.RemoveClassrooms();
+                    break;
+
+                case 4:
+                    Menu.ClassroomSelectionMenu();
                     break;
             }
         }

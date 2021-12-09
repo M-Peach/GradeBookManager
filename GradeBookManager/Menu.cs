@@ -43,7 +43,7 @@ namespace GradeBookManager
                 }
                 else
                 {
-                    Program.CheckSelection(userSelection);
+                    Program.CheckMainSelection(userSelection);
                 }
 
             ERROR2:
@@ -63,15 +63,36 @@ namespace GradeBookManager
             }
         }
 
-        public static void DetailsMenu()
+        public static void ClassroomSelectionMenu()
         {
             Console.Clear();
-            Classrooms.ShowClassrooms();
+            Classroom.ShowClassrooms();
             Console.WriteLine();
             Console.WriteLine("Enter Classroom Number:");
 
+            int userSelection = int.Parse(Console.ReadLine());
 
+            Classroom.EditClassroom(userSelection);
+        }
 
+        public static void DetailsMenu(int userSelection)
+        {
+            Console.WriteLine();
+            Console.WriteLine("[1] Show Students");
+            Console.WriteLine("[2] Add Students");
+            Console.WriteLine("[3] Remove Student");
+            Console.WriteLine("[4] Classroom Average");
+            Console.WriteLine("[5] Show Top Student");
+            Console.WriteLine("[6] Show Lowest Student");
+            Console.WriteLine("[7] Compare Two Students");
+            Console.WriteLine("[8] Student Details Menu");
+            Console.WriteLine("[9] Return to Main Menu");
+            Console.WriteLine();
+            Console.WriteLine("Select an option: 1 - 9");
+
+            int userInput = int.Parse(Console.ReadLine());
+
+            Program.CheckClassroomSelection(userInput, userSelection);
 
         }
     }

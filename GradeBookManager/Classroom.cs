@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GradeBookManager
 {
-    public class Classrooms
+    public class Classroom
     {
         public static List<string> classrooms = new List<string>();
 
@@ -39,6 +39,15 @@ namespace GradeBookManager
             int userInput = int.Parse(Console.ReadLine());
 
             classrooms.RemoveAt(userInput);
+        }
+
+        public static void EditClassroom(int userSelection)
+        {
+            Console.Clear();
+            Console.WriteLine($"Editing: {classrooms[userSelection]}");
+            Console.WriteLine();
+
+            Menu.DetailsMenu(userSelection);
         }
     }
 }
