@@ -66,13 +66,15 @@ namespace GradeBookManager
         public static void ClassroomSelectionMenu()
         {
             Console.Clear();
-            ClassroomArchive.ShowClassrooms();
+            Program.ShowClassroom();
             Console.WriteLine();
-            Console.WriteLine("Enter Classroom Number:");
+            Console.WriteLine("Enter Classroom ID:");
 
             int userSelection = int.Parse(Console.ReadLine());
 
-            ClassroomArchive.EditClassroom(userSelection);
+            Program.ClassroomSelection(userSelection);
+
+            
         }
 
         public static void DetailsMenu(int userSelection)
@@ -93,6 +95,7 @@ namespace GradeBookManager
             int userInput = int.Parse(Console.ReadLine());
 
             Program.CheckClassroomSelection(userInput, userSelection);
+           
 
         }
     }

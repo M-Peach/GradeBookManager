@@ -10,15 +10,15 @@ namespace GradeBookManager
     {
         public static List<Assignment> assignments = new List<Assignment>();
 
-        public string assignment { get; set; }
+       // public string assignment { get; set; }
+
+
+        public string Name { get; set; }
+
+        public double Grade { get; set; }
 
 
 
-        public static Dictionary<string, double> NameGrade = new Dictionary<string, double>();
-
-        public string name { get; set; }
-
-        public double grade { get; set; }
 
 
     }

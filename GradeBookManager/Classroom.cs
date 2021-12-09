@@ -10,7 +10,8 @@ namespace GradeBookManager
     {
         public string ClassName { get; set; }
 
-        public static List<StudentArchive> Students = new List<StudentArchive>();
+        public static Dictionary<string, double> NameGrade = new Dictionary<string, double>();
+
 
     }
 }

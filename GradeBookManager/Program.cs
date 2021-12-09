@@ -8,12 +8,6 @@ namespace GradeBookManager
 {
     public class Program
     {
-        StudentArchive students = new StudentArchive();
-
-        ClassroomArchive classooms = new ClassroomArchive();
-
-        Menu Menu = new Menu();
-
         public static List<Classroom> classrooms = new List<Classroom>();
 
         public static void Main()
@@ -28,7 +22,7 @@ namespace GradeBookManager
             switch (userSelection)
             {
                 case 1:
-                    ClassroomArchive.ShowClassrooms();
+                    ShowClassroom();
                     break;
 
                 case 2:
@@ -36,7 +30,7 @@ namespace GradeBookManager
                     break;
 
                 case 3:
-                    ClassroomArchive.RemoveClassrooms();
+                    RemoveClassroom();
                     break;
 
                 case 4:
@@ -45,20 +39,20 @@ namespace GradeBookManager
             }
         }
 
-        public static void CheckClassroomSelection(int userInput, int userSelection)
+       public static void CheckClassroomSelection(int userInput, int userSelection)
         {
             switch (userInput)
             {
                 case 1:
-                    StudentArchive.ShowStudents(userSelection);
+                    ShowStudent();
                     break;
 
                 case 2:
-                    StudentArchive.AddStudents(userSelection);
+                    AddStudent(userSelection);
                     break;
 
                 case 3:
-                    ClassroomArchive.RemoveClassrooms();
+                    
                     break;
 
                 case 4:
@@ -86,10 +80,77 @@ namespace GradeBookManager
         {
             Console.Clear();
 
-            foreach (Classroom classroom in classrooms)
+            for (int i = 0; i < classrooms.Count; i++)
             {
-                Console.WriteLine(classroom.ClassName);
+                Console.WriteLine($"ID {i} : {classrooms[i].ClassName}");
             }
         }
+
+        public static void RemoveClassroom()
+        {
+            Console.Clear();
+
+            ShowClassroom();
+            Console.WriteLine();
+            Console.WriteLine("To Remove a Classroom, Select an ID:");
+
+            int userInput = int.Parse(Console.ReadLine());
+
+            classrooms.RemoveAt(userInput);
+            Console.WriteLine();
+            Console.WriteLine($"Removed Classroom ID {userInput}");
+        }
+
+        public static void ClassroomSelection(int userSelection)
+        {
+            Console.Clear();
+            Console.WriteLine($"Now Editing {classrooms[userSelection].ClassName}");
+            Console.WriteLine();
+            Menu.DetailsMenu(userSelection);
+
+        }
+
+        /// --- STUDENT METHODS --- ///
+        
+        public static void AddStudent(int userSelection)
+        {
+            Student student = new Student();
+
+            Classroom classroom =  Classroom(student);
+
+            Console.Clear();
+
+
+
+                Console.WriteLine("Enter Student Name:");
+
+                string name = Console.ReadLine();
+
+                student.Name = name;
+
+                Console.WriteLine("Enter Student Grade:");
+
+                double grade = double.Parse(Console.ReadLine());
+
+                student.Grade = grade;
+
+
+                Classroom.NameGrade.Add(student.Name, student.Grade);
+            
+            
+
+        }
+
+        public static void ShowStudent()
+        {
+            Console.Clear();
+
+            for (int i = 0; i < Classroom.NameGrade.Count; i++)
+            {
+                Console.WriteLine($"ID {i} : {string.Join(Environment.NewLine, Classroom.NameGrade)}");
+            }
+        }
+
+
     }
 }
