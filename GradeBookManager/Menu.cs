@@ -8,7 +8,7 @@ namespace GradeBookManager
 {
     internal class Menu
     {
-        public static void MainMenu()
+        public void MainMenu()
         {
             bool loop = true;
 
@@ -63,7 +63,7 @@ namespace GradeBookManager
             }
         }
 
-        public static void ClassroomSelectionMenu()
+        public void ClassroomSelectionMenu()
         {
             Console.Clear();
             Program.ShowClassroom();
@@ -77,7 +77,7 @@ namespace GradeBookManager
             
         }
 
-        public static void DetailsMenu(int userSelection)
+        public void DetailsMenu()
         {
             Console.WriteLine();
             Console.WriteLine("[1] Show Students");

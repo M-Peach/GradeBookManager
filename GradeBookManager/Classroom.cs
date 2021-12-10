@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace GradeBookManager
 {
-    public class Classroom : Student
+    public class Classroom 
     {
-        public string ClassName { get; set; }
+        public string ClassName { get; }
 
         //public static Dictionary<string, double> NameGrade = new Dictionary<string, double>();
         
-        public static List<Student> students = new List<Student>();
+        public List<Student> students = new List<Student>();
 
-        public void SetClassName(string ClassName)
+        public Classroom (string ClassName)
         {
             this.ClassName = ClassName;
         }
