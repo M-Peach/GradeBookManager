@@ -38,16 +38,16 @@ namespace GradeBookManager
             }
         }
 
-       public void CheckClassroomSelection(int userInput)
+       public void CheckClassroomSelection(int userInput, Classroom classroom)
         {
             switch (userInput)
             {
                 case 1:
-                    ShowStudent();
+                    ShowStudent(classroom);
                     break;
 
                 case 2:
-                    AddStudent();
+                    AddStudent(classroom);
                     break;
 
                 case 3:
@@ -55,7 +55,7 @@ namespace GradeBookManager
                     break;
 
                 case 4:
-                    ClassroomSelectionMenu();
+                   
                     break;
             }
         }
@@ -104,12 +104,11 @@ namespace GradeBookManager
             Console.Clear();
             Console.WriteLine($"Now Editing {classrooms[userSelection].ClassName}");
             Console.WriteLine();
-            DetailsMenu();
 
         }
 
         /// --- STUDENT METHODS --- ///
-        
+
         public void AddStudent(Classroom classroom)
         {
             Student student = new Student();
@@ -203,7 +202,7 @@ namespace GradeBookManager
             }
         }
 
-        public void ClassroomSelectionMenu()
+        public void ClassroomSelectionMenu(Classroom classroom)
         {
             Console.Clear();
             Program.ShowClassroom();
@@ -213,11 +212,12 @@ namespace GradeBookManager
             int userSelection = int.Parse(Console.ReadLine());
 
             ClassroomSelection(userSelection);
+            DetailsMenu(classroom, userSelection);
 
 
         }
 
-        public void DetailsMenu()
+        public void DetailsMenu(Classroom classroom, int userSelection)
         {
             Console.WriteLine();
             Console.WriteLine("[1] Show Students");
@@ -234,7 +234,24 @@ namespace GradeBookManager
 
             int userInput = int.Parse(Console.ReadLine());
 
-            CheckClassroomSelection(userInput);
+            switch (userInput)
+            {
+                case 1:
+                    ShowStudent(classroom);
+                    break;
+
+                case 2:
+                    AddStudent(classroom);
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+            }
         }
     }
 }
