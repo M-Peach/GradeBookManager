@@ -21,6 +21,8 @@ namespace GradeBookManager
 
             while (loop)
             {
+                ERROR1:
+                Console.Clear();
                 Console.WriteLine("Grade Manager");
                 Console.WriteLine();
                 Console.WriteLine("[1] Show Classrooms");
@@ -31,8 +33,6 @@ namespace GradeBookManager
                 Console.WriteLine();
                 Console.WriteLine("Select an option: 1 - 5");
 
-
-            ERROR1:
                 string userInput = Console.ReadLine();
 
                 bool isNumber = int.TryParse(userInput, out int userSelection);
@@ -51,21 +51,6 @@ namespace GradeBookManager
                 else
                 {
                     CheckMainSelection(userSelection);
-                }
-
-            ERROR2:
-                Console.WriteLine();
-                Console.WriteLine("Return to menu? (Y / N)");
-
-                userInput = Console.ReadLine().ToUpper();
-
-                if (userInput != "Y")
-                {
-                    goto ERROR2;
-                }
-                else
-                {
-                    Console.Clear();
                 }
             }
         }
