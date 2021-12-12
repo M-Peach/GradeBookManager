@@ -8,7 +8,14 @@ namespace GradeBookManager
 {
     public class Assignment
     {
-        public string Name { get; set; }
+        public string AssignmentName { get; set; }
+
+        public static List<Assignment> assignmentGrades = new List<Assignment>();
+
+        public Assignment()
+        {
+            assignmentGrades = new List<Assignment>();
+        }
 
     }
 }

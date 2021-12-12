@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Compile Remove="ClassroomArchive.cs" />
-    <Compile Remove="Menu.cs" />
     <Compile Remove="StudentArchive.cs" />
   </ItemGroup>
 

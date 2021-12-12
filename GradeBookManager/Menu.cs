@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace GradeBookManager
 {
-    internal class Menu
+    public class Menu
     {
+        public List<Classroom> classrooms { get; set; }
+
+        public Menu()
+        {
+            classrooms = new List<Classroom>();
+        }
+
         public void MainMenu()
         {
             bool loop = true;
@@ -43,7 +50,7 @@ namespace GradeBookManager
                 }
                 else
                 {
-                    Program.CheckMainSelection(userSelection);
+                    CheckMainSelection(userSelection);
                 }
 
             ERROR2:
@@ -66,18 +73,39 @@ namespace GradeBookManager
         public void ClassroomSelectionMenu()
         {
             Console.Clear();
-            Program.ShowClassroom();
+            ShowClassroom();
             Console.WriteLine();
-            Console.WriteLine("Enter Classroom ID:");
+            Console.WriteLine("Enter Classroom Name:");
 
-            int userSelection = int.Parse(Console.ReadLine());
+            string userSelection = Console.ReadLine();
+            var selectedClass = new Classroom();
 
-            Program.ClassroomSelection(userSelection);
+            bool loop = false;
 
-            
+
+                foreach (var classroom in classrooms)
+                {
+                    if (userSelection.Equals(classroom.ClassName))
+                    {
+                        selectedClass = classroom;
+
+                        DetailsMenu(selectedClass);
+
+                        loop = false;
+
+                        return;
+                    }
+
+                else { loop = true; }
+                }
+
+                if (loop == true)
+                {
+                Console.WriteLine("ERROR");
+                }
         }
 
-        public void DetailsMenu()
+        public void DetailsMenu(Classroom selectedClass)
         {
             Console.WriteLine();
             Console.WriteLine("[1] Show Students");
@@ -94,9 +122,92 @@ namespace GradeBookManager
 
             int userInput = int.Parse(Console.ReadLine());
 
-            Program.CheckClassroomSelection(userInput);
-           
+            switch (userInput)
+            {
+                case 1:
+                    selectedClass.ShowStudent();
+                    break;
 
+                case 2:
+                    selectedClass.AddStudent();
+                    break;
+
+                case 3:
+                    selectedClass.RemoveStudent();
+                    break;
+
+                case 4:
+
+                    break;
+
+                case 8:
+                    selectedClass.DetailsMenu();
+                    break;
+            }
+        }
+        public void CheckMainSelection(int userSelection)
+        {
+            switch (userSelection)
+            {
+                case 1:
+                    ShowClassroom();
+                    break;
+
+                case 2:
+                    AddClassroom();
+                    break;
+
+                case 3:
+                    RemoveClassroom();
+                    break;
+
+                case 4:
+                    ClassroomSelectionMenu();
+                    break;
+            }
+        }
+
+        
+        /// \\\ CLASSROOM METHODS \\\ ///
+
+        public void AddClassroom()
+        {
+
+            Console.Clear();
+            Console.WriteLine("Enter Class Name:");
+
+            string userInput = Console.ReadLine();
+
+            Classroom classroom = new Classroom();
+
+            classroom.ClassName = userInput;
+
+            classrooms.Add(classroom);
+        }
+
+        public void ShowClassroom()
+        {
+            Console.Clear();
+
+            for (int i = 0; i < classrooms.Count; i++)
+            {
+                Console.WriteLine($"Classroom Name: {classrooms[i].ClassName}");
+            }
+        }
+
+        public void RemoveClassroom()
+        {
+            Console.Clear();
+
+            ShowClassroom();
+            Console.WriteLine();
+            Console.WriteLine("To Remove a Classroom, Select an ID:");
+
+            int userInput = int.Parse(Console.ReadLine());
+
+            classrooms.RemoveAt(userInput);
+            Console.WriteLine();
+            Console.WriteLine($"Removed Classroom ID {userInput}");
         }
     }
 }

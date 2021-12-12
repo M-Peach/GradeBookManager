@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace GradeBookManager
 {
-    public class Program
+    public class AssignmentGrade
     {
-        public static void Main()
-        {
-            Menu menu = new Menu();
-            menu.MainMenu();
-        }
+        public double Grade { get; set; }
     }
 }
