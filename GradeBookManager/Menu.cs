@@ -141,7 +141,7 @@ namespace GradeBookManager
                     break;
 
                 case 8:
-                    selectedClass.DetailsMenu();
+                    selectedClass.StudentSelectionMenu();
                     break;
             }
         }

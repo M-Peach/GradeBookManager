@@ -91,7 +91,7 @@ namespace GradeBookManager
             students.RemoveAt(userInput);
         }
 
-        public void ClassroomSelectionMenu()
+        public void StudentSelectionMenu()
         {
             Console.Clear();
             ShowStudent();
@@ -110,7 +110,7 @@ namespace GradeBookManager
                 {
                     selectedStudent = student;
 
-                    DetailsMenu(student);
+                    StudentDetailsMenu(student);
 
                     loop = false;
 
@@ -126,7 +126,7 @@ namespace GradeBookManager
             }
         }
 
-        public void DetailsMenu(Student student)
+        public void StudentDetailsMenu(Student selectedStudent)
         {
             Console.WriteLine();
             Console.WriteLine("[1] Student Summary");
@@ -149,7 +149,11 @@ namespace GradeBookManager
                     break;
 
                 case 2:
+                    selectedStudent.AddAssignment();
+                    break;
 
+                case 4:
+                    selectedStudent.ShowAssignment();
                     break;
             }
         }

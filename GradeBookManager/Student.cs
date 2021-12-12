@@ -44,7 +44,7 @@ namespace GradeBookManager
 
                 Console.WriteLine();
 
-                Console.WriteLine("Add Another Student? (Y / N)");
+                Console.WriteLine("Add Another Assignment? (Y / N)");
 
                 string userInput = Console.ReadLine().ToUpper();
 
@@ -64,28 +64,5 @@ namespace GradeBookManager
                     Console.WriteLine(assignment.AssignmentName);
                 }
             }
-        
-
-
-
-        /*public static List<Assignment> assignments = new List<Assignment>();
-
-       // public string assignment { get; set; }
-
-
-        public string Name { get; set; }
-
-        public double Grade { get; set; }
-        
-
-        public string Name { get; set; }
-
-        public void StudentName(string Name)
-        {
-            this.Name = Name;   
-        }
-
-        */
-
     }
 }
