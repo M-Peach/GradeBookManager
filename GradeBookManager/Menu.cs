@@ -52,6 +52,10 @@ namespace GradeBookManager
                 {
                     CheckMainSelection(userSelection);
                 }
+
+                Console.WriteLine();
+                Console.WriteLine("Press ENTER to Continue:");
+                Console.ReadLine();
             }
         }
 
@@ -92,42 +96,52 @@ namespace GradeBookManager
 
         public void DetailsMenu(Classroom selectedClass)
         {
-            Console.WriteLine();
-            Console.WriteLine("[1] Show Students");
-            Console.WriteLine("[2] Add Students");
-            Console.WriteLine("[3] Remove Student");
-            Console.WriteLine("[4] Classroom Average");
-            Console.WriteLine("[5] Show Top Student");
-            Console.WriteLine("[6] Show Lowest Student");
-            Console.WriteLine("[7] Compare Two Students");
-            Console.WriteLine("[8] Student Details Menu");
-            Console.WriteLine("[9] Return to Main Menu");
-            Console.WriteLine();
-            Console.WriteLine("Select an option: 1 - 9");
-
-            int userInput = int.Parse(Console.ReadLine());
-
-            switch (userInput)
+            bool loop = true;
+            while (loop = true)
             {
-                case 1:
-                    selectedClass.ShowStudent();
-                    break;
+                Console.WriteLine();
+                Console.WriteLine("[1] Show Students");
+                Console.WriteLine("[2] Add Students");
+                Console.WriteLine("[3] Remove Student");
+                Console.WriteLine("[4] Classroom Average");
+                Console.WriteLine("[5] Show Top Student");
+                Console.WriteLine("[6] Show Lowest Student");
+                Console.WriteLine("[7] Compare Two Students");
+                Console.WriteLine("[8] Student Details Menu");
+                Console.WriteLine("[9] Return to Main Menu");
+                Console.WriteLine();
+                Console.WriteLine("Select an option: 1 - 9");
 
-                case 2:
-                    selectedClass.AddStudent();
-                    break;
+                int userInput = int.Parse(Console.ReadLine());
 
-                case 3:
-                    selectedClass.RemoveStudent();
-                    break;
+                switch (userInput)
+                {
+                    case 1:
+                        selectedClass.ShowStudent();
+                        break;
 
-                case 4:
+                    case 2:
+                        selectedClass.AddStudent();
+                        break;
 
-                    break;
+                    case 3:
+                        selectedClass.RemoveStudent();
+                        break;
 
-                case 8:
-                    selectedClass.StudentSelectionMenu();
-                    break;
+                    case 4:
+
+                        break;
+                        
+                    case 8:
+                        selectedClass.StudentSelectionMenu();
+                        break;
+
+                    case 9:
+                        loop = false;
+                        return;
+                        break;
+
+                }
             }
         }
         public void CheckMainSelection(int userSelection)

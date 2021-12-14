@@ -8,7 +8,7 @@ namespace GradeBookManager
 {
     public class Student
     {
-        public static List<Assignment> assignments = new List<Assignment>();
+        public List<Assignment> assignments = new List<Assignment>();
 
         public Student()
         {
@@ -55,14 +55,63 @@ namespace GradeBookManager
                 else { return; }
             }
         }
-            public void ShowAssignment()
-            {
-                Console.Clear();
+        public void ShowAssignment()
+        {
+            Console.Clear();
 
-                foreach (Assignment assignment in assignments)
-                {
-                    Console.WriteLine(assignment.AssignmentName);
-                }
+            foreach (Assignment assignment in assignments)
+            {
+                Console.WriteLine(assignment.AssignmentName);
             }
+        }
+        public void DeleteAssignment()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Remove Assignment Menu:");
+
+            Console.WriteLine();
+
+            for (int i = 0; i < assignments.Count; i++)
+            {
+                Console.WriteLine($"ID: {i} : {assignments[i].AssignmentName}");
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Enter a Student ID:");
+
+            int userInput = int.Parse(Console.ReadLine());
+
+            assignments.RemoveAt(userInput);
+        }
+
+        public void SelectAssignment()
+        {
+            Console.Clear();
+            ShowAssignment();
+            Console.WriteLine();
+            Console.WriteLine("Enter Assignment Name:");
+
+            string userSelection = Console.ReadLine();
+
+            bool loop = false;
+
+
+            foreach (var assignment in assignments)
+            {
+                if (userSelection.Equals(assignment.AssignmentName))
+                {
+                    assignment.AddGrade();
+
+                    loop = false;
+
+                    return;
+                }
+
+                else { loop = true; }
+
+            }
+        }
     }
 }

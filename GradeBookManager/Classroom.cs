@@ -99,10 +99,10 @@ namespace GradeBookManager
             Console.WriteLine("Enter Student Name:");
 
             string userSelection = Console.ReadLine();
-            var selectedStudent = new Student();
 
             bool loop = false;
 
+            Student selectedStudent = new Student();
 
             foreach (var student in students)
             {
@@ -110,14 +110,16 @@ namespace GradeBookManager
                 {
                     selectedStudent = student;
 
-                    StudentDetailsMenu(student);
-
                     loop = false;
+
+                    StudentDetailsMenu(selectedStudent);
 
                     return;
                 }
 
                 else { loop = true; }
+
+
             }
 
             if (loop == true)
@@ -128,33 +130,50 @@ namespace GradeBookManager
 
         public void StudentDetailsMenu(Student selectedStudent)
         {
-            Console.WriteLine();
-            Console.WriteLine("[1] Student Summary");
-            Console.WriteLine("[2] Add Assignment");
-            Console.WriteLine("[3] Delete Assignment");
-            Console.WriteLine("[4] Show Assignments");
-            Console.WriteLine("[5] Add Grade to Assignment");
-            Console.WriteLine("[6] Show Top Assignment Grade");
-            Console.WriteLine("[7] Show Lowest Assingment Grade");
-            Console.WriteLine("[9] Exit");
-            Console.WriteLine();
-            Console.WriteLine("Select a valid option:");
-
-            int userInput = int.Parse(Console.ReadLine());
-
-            switch (userInput)
+            bool loop = true;
+            while (loop = true)
             {
-                case 1:
+                Console.WriteLine();
+                Console.WriteLine("[1] Student Summary");
+                Console.WriteLine("[2] Add Assignment");
+                Console.WriteLine("[3] Delete Assignment");
+                Console.WriteLine("[4] Show Assignments");
+                Console.WriteLine("[5] Add Grade to Assignment");
+                Console.WriteLine("[6] Show Top Assignment Grade");
+                Console.WriteLine("[7] Show Lowest Assingment Grade");
+                Console.WriteLine("[9] Exit");
+                Console.WriteLine();
+                Console.WriteLine("Select a valid option:");
 
-                    break;
+                int userInput = int.Parse(Console.ReadLine());
 
-                case 2:
-                    selectedStudent.AddAssignment();
-                    break;
+                switch (userInput)
+                {
+                    case 1:
 
-                case 4:
-                    selectedStudent.ShowAssignment();
-                    break;
+                        break;
+
+                    case 2:
+                        selectedStudent.AddAssignment();
+                        break;
+
+                    case 3:
+                        selectedStudent.DeleteAssignment();
+                        break;
+
+                    case 4:
+                        selectedStudent.ShowAssignment();
+                        break;
+
+                    case 5:
+                        selectedStudent.SelectAssignment();
+                        break;
+
+                    case 9:
+                        loop = false;
+                        return;
+                        break;
+                }
             }
         }
     }
