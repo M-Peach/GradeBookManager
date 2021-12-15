@@ -77,18 +77,19 @@ namespace GradeBookManager
 
             Console.WriteLine();
 
-            for(int i = 0; i < students.Count; i++)
-            {
-                Console.WriteLine ($"ID: {i} : {students[i].Name}");
-            }
-
-            Console.WriteLine();
-
             Console.WriteLine("Enter a Student ID:");
 
-            int userInput = int.Parse(Console.ReadLine());
+            string userInput = Console.ReadLine();
 
-            students.RemoveAt(userInput);
+            for (int i = 0; i < students.Count; i++)
+            {
+                if (students[i].Equals(userInput))
+                {
+                    students.RemoveAt(i);
+                }
+            }
+
+            Console.WriteLine($"Removed {userInput}");
         }
 
         public void StudentSelectionMenu()
@@ -141,7 +142,7 @@ namespace GradeBookManager
                 Console.WriteLine("[5] Add Grade to Assignment");
                 Console.WriteLine("[6] Show Top Assignment Grade");
                 Console.WriteLine("[7] Show Lowest Assingment Grade");
-                Console.WriteLine("[9] Exit");
+                Console.WriteLine("[0] Exit");
                 Console.WriteLine();
                 Console.WriteLine("Select a valid option:");
 
@@ -150,7 +151,7 @@ namespace GradeBookManager
                 switch (userInput)
                 {
                     case 1:
-
+                        selectedStudent.StudentSummary(selectedStudent);
                         break;
 
                     case 2:
@@ -169,12 +170,158 @@ namespace GradeBookManager
                         selectedStudent.SelectAssignment();
                         break;
 
-                    case 9:
+                    case 6:
+                        selectedStudent.ShowTopAssignment();
+                        break;
+
+                    case 7:
+                        selectedStudent.ShowLowAssignment();
+                        break;
+
+                    case 0:
                         loop = false;
                         return;
                         break;
                 }
             }
+        }
+
+        public void ClassAverage()
+        {
+            Console.Clear();
+            List<double> allstudents = new List<double>();
+            foreach (var student in students)
+            {
+                allstudents.Add(student.StudentAverage());
+            }
+
+            double sAvg =  allstudents.Average();
+
+            Console.WriteLine($"Classroom Average: {sAvg}%");
+
+            Console.WriteLine("Press ENTER to Continue:");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        public void TopStudent()
+        {
+            Console.Clear();
+            double i = 0;
+            string a = null;
+            double ii = 0;
+            string aa = null;
+
+            foreach (var student in students)
+            {
+                if (student.TopAssignment() > i)
+                {
+                    i = student.TopAssignment();
+                    a = student.Name;
+
+                }
+            }
+            Console.WriteLine($"Highest Assignment Grade: {i}% on {a}");
+            Console.WriteLine();
+
+            foreach (var student in students)
+            {
+                if (student.StudentAverage() > i)
+                {
+                    ii = student.StudentAverage();
+                    aa = student.Name;
+
+                }
+            }
+
+            Console.WriteLine($"Highest Average Grade: {ii}% : {aa}");
+            Console.WriteLine();
+            Console.WriteLine("Press ENTER to Continue:");
+            Console.ReadLine();
+            Console.Clear();
+        }
+        public void LowStudent()
+        {
+            Console.Clear();
+            double i = 900;
+            string a = null;
+            double ii = 900;
+            string aa = null;
+
+            foreach (var student in students)
+            {
+                if (student.LowAssignment() < i)
+                {
+                    i = student.LowAssignment();
+                    a = student.Name;
+
+                }
+            }
+            Console.WriteLine($"Lowest Assignment Grade: {i}% on {a}");
+            Console.WriteLine();
+
+            foreach (var student in students)
+            {
+                if (student.StudentAverage() < i)
+                {
+                    ii = student.StudentAverage();
+                    aa = student.Name;
+
+                }
+            }
+
+            Console.WriteLine($"Lowest Average Grade: {ii}% : {aa}");
+            Console.WriteLine();
+            Console.WriteLine("Press ENTER to Continue:");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        public void StudentCompare()
+        {
+            Console.Clear();
+            ShowStudent();
+
+            double s1 = 0;
+            double s2 = 0;
+            string s11 = null;
+            string s22 = null;
+
+            Console.WriteLine("Enter the Name of the First Student:");
+            string userInput1 = Console.ReadLine();
+
+            Console.WriteLine("Enter the Name of the Second Student:");
+            string userInput2 = Console.ReadLine();
+
+            foreach(var student in students)
+            {
+                if (student.Name.Equals(userInput1))
+                {
+                    s1 = student.StudentAverage();
+                    s11 = student.Name;
+                }
+                if (student.Name.Equals(userInput2))
+                {
+                    s2 = student.StudentAverage();
+                    s22 = student.Name; 
+                }
+            }
+
+            if(s1 > s2)
+            {
+                Console.WriteLine($"{s11} has a higher average.");
+                Console.WriteLine();
+                Console.WriteLine($"{s11} : {s1}%");
+                Console.WriteLine($"{s22} : {s2}%");
+            }
+            else
+            {
+                Console.WriteLine($"{s22} has a higher average.");
+                Console.WriteLine();
+                Console.WriteLine($"{s22} : {s2}%");
+                Console.WriteLine($"{s11} : {s1}%");
+            }
+
         }
     }
 }

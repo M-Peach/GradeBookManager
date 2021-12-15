@@ -61,9 +61,10 @@ namespace GradeBookManager
 
             foreach (Assignment assignment in assignments)
             {
-                Console.WriteLine(assignment.AssignmentName);
+                    Console.WriteLine(assignment.AssignmentName);
             }
         }
+
         public void DeleteAssignment()
         {
             Console.Clear();
@@ -79,7 +80,7 @@ namespace GradeBookManager
 
             Console.WriteLine();
 
-            Console.WriteLine("Enter a Student ID:");
+            Console.WriteLine("Enter a Assignment ID:");
 
             int userInput = int.Parse(Console.ReadLine());
 
@@ -112,6 +113,129 @@ namespace GradeBookManager
                 else { loop = true; }
 
             }
+        }
+
+        public bool Completed()
+        {
+            bool r = false;
+            foreach (var assignment in assignments)
+            {
+                bool result = assignment.IsGraded();
+
+                if (result) { r = true; }
+                else { return false; }
+            }
+            if (r)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public double StudentAverage()
+        {
+            List<double> allGrades = new List<double>();
+            foreach (var assignment in assignments)
+            {
+                allGrades.Add(assignment.ReturnGrade());
+            }
+
+            double sAvg = allGrades.Average();
+
+            return sAvg;
+        }
+        public void StudentSummary(Student selectedStudent)
+        {
+            Console.Clear();
+
+            int assignmentNumber = assignments.Count;
+            bool complete = Completed();
+
+            Console.WriteLine("Student Summary:");
+            Console.WriteLine();
+            Console.WriteLine($"Student Name: {Name}");
+
+            Console.WriteLine($"Current Number of Assignments: {assignmentNumber}");
+
+            Console.WriteLine($"Student Average : {StudentAverage()}%");
+
+            Console.WriteLine($"All Assignments Completed: {complete}");
+
+            Console.WriteLine("Press ENTER to continue:");
+            Console.ReadLine();
+            Console.Clear();
+            
+        }
+        public void ShowTopAssignment()
+        {
+            Console.Clear();
+            double i = 0;
+            string a = null;
+
+            foreach (var assignment in assignments)
+            {
+                if (assignment.ReturnGrade() > i)
+                {
+                    i = assignment.ReturnGrade();
+                    a = assignment.AssignmentName;
+
+                }
+            }
+            Console.WriteLine($"Highest Assignment Grade: {i}% on {a}");
+
+            Console.WriteLine("Press ENTER to Continue:");
+            Console.ReadLine();
+            Console.Clear();
+        }
+        public double TopAssignment()
+        {
+            double i = 0;
+            string a = null;
+
+            foreach(var assignment in assignments)
+            {
+                if(assignment.ReturnGrade() > i)
+                {
+                    i = assignment.ReturnGrade();
+                }
+            }
+            return i;
+        }
+
+        public double LowAssignment()
+        {
+            double i = 900;
+            string a = null;
+
+            foreach (var assignment in assignments)
+            {
+                if (assignment.ReturnGrade() < i)
+                {
+                    i = assignment.ReturnGrade();
+                }
+            }
+            return i;
+        }
+        public void ShowLowAssignment()
+        {
+            Console.Clear();
+            double i = 900;
+            string a = null;
+
+            foreach (var assignment in assignments)
+            {
+                if (assignment.ReturnGrade() < i)
+                {
+                    i = assignment.ReturnGrade();
+                    a = assignment.AssignmentName;
+
+                }
+            }
+            Console.WriteLine($"Lowest Assignment Grade: {i}% on {a}");
+
+            Console.WriteLine("Press ENTER to Continue:");
+            Console.ReadLine();
+            Console.Clear();
         }
     }
 }

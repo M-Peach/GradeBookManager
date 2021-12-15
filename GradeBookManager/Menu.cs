@@ -108,9 +108,9 @@ namespace GradeBookManager
                 Console.WriteLine("[6] Show Lowest Student");
                 Console.WriteLine("[7] Compare Two Students");
                 Console.WriteLine("[8] Student Details Menu");
-                Console.WriteLine("[9] Return to Main Menu");
+                Console.WriteLine("[0] Return to Main Menu");
                 Console.WriteLine();
-                Console.WriteLine("Select an option: 1 - 9");
+                Console.WriteLine("Select an option: 0 - 8");
 
                 int userInput = int.Parse(Console.ReadLine());
 
@@ -129,14 +129,26 @@ namespace GradeBookManager
                         break;
 
                     case 4:
-
+                        selectedClass.ClassAverage();
                         break;
-                        
+
+                    case 5:
+                        selectedClass.TopStudent();
+                        break;
+
+                    case 6:
+                        selectedClass.LowStudent();
+                        break;
+
+                    case 7:
+                        selectedClass.StudentCompare();
+                        break;
+
                     case 8:
                         selectedClass.StudentSelectionMenu();
                         break;
 
-                    case 9:
+                    case 0:
                         loop = false;
                         return;
                         break;
@@ -200,13 +212,19 @@ namespace GradeBookManager
 
             ShowClassroom();
             Console.WriteLine();
-            Console.WriteLine("To Remove a Classroom, Select an ID:");
+            Console.WriteLine("Type the Name of the Classroom to Remove:");
 
-            int userInput = int.Parse(Console.ReadLine());
+            string userInput = Console.ReadLine();
 
-            classrooms.RemoveAt(userInput);
+            for (var i = 0;i < classrooms.Count; i++)
+            {
+                if (classrooms[i].Equals(userInput))
+                {
+                    classrooms.RemoveAt(i);
+                }
+            }
             Console.WriteLine();
-            Console.WriteLine($"Removed Classroom ID {userInput}");
+            Console.WriteLine($"Removed Classroom {userInput}");
         }
     }
 }

@@ -43,12 +43,35 @@ namespace GradeBookManager
 
         public void ShowGrade()
         {
-            Console.Clear();
-
             foreach (AssignmentGrade grade in assignmentGrades)
             {
-                Console.WriteLine(grade.Grade);
+                Console.WriteLine($"{AssignmentName} : {grade.Grade}");
             }
+        }
+
+        public bool IsGraded()
+        {
+            foreach(AssignmentGrade grade in assignmentGrades)
+            {
+                if (grade != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }               
+            }
+            return false;
+        }
+
+        public double ReturnGrade()
+        {
+            foreach(AssignmentGrade grade in assignmentGrades)
+            {
+                return grade.Grade;
+            }
+            return 0;
         }
     }
 }
