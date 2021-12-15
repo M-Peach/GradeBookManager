@@ -135,6 +135,13 @@ namespace GradeBookManager
         public double StudentAverage()
         {
             List<double> allGrades = new List<double>();
+
+            if(assignments.Count > 0)
+            {
+                Console.WriteLine("ERROR: No Grades");
+                return 0;
+            }
+
             foreach (var assignment in assignments)
             {
                 allGrades.Add(assignment.ReturnGrade());
@@ -157,10 +164,18 @@ namespace GradeBookManager
 
             Console.WriteLine($"Current Number of Assignments: {assignmentNumber}");
 
-            Console.WriteLine($"Student Average : {StudentAverage()}%");
+            if(StudentAverage() == 0)
+            {
+                Console.WriteLine($"Student Average : No Grades Yet!");
+            }
+            else
+            {
+                Console.WriteLine($"Student Average : {StudentAverage()}%");
+            }
 
             Console.WriteLine($"All Assignments Completed: {complete}");
 
+            Console.WriteLine("A '0%' may indicate a grade has not yet been added for this student.");
             Console.WriteLine("Press ENTER to continue:");
             Console.ReadLine();
             Console.Clear();

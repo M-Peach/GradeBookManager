@@ -131,6 +131,7 @@ namespace GradeBookManager
 
         public void StudentDetailsMenu(Student selectedStudent)
         {
+            Console.Clear();
             bool loop = true;
             while (loop = true)
             {
@@ -181,7 +182,6 @@ namespace GradeBookManager
                     case 0:
                         loop = false;
                         return;
-                        break;
                 }
             }
         }

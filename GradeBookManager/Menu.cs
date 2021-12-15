@@ -96,6 +96,7 @@ namespace GradeBookManager
 
         public void DetailsMenu(Classroom selectedClass)
         {
+            Console.Clear();
             bool loop = true;
             while (loop = true)
             {
@@ -148,6 +149,10 @@ namespace GradeBookManager
                         selectedClass.StudentSelectionMenu();
                         break;
 
+                    case 9:
+                        Credits();
+                        break;
+
                     case 0:
                         loop = false;
                         return;
@@ -178,7 +183,32 @@ namespace GradeBookManager
             }
         }
 
-        
+        public void Credits()
+        {
+            Console.WriteLine("Press ENTER:");
+            Console.ReadLine();
+            Console.WriteLine("Console App - GradeBookManager by:");
+            Console.ReadLine();
+            Console.WriteLine("Mike Peachman");
+            Console.ReadLine();
+            Console.WriteLine("Claim Academy 2021");
+            Console.ReadLine();
+            Console.WriteLine("What else do you want from me?");
+            Console.ReadLine();
+            Console.WriteLine("I have nothing left to say.");
+            Console.ReadLine();
+            Console.WriteLine("Alright enough");
+            Console.ReadLine();
+            Console.WriteLine("Oh wait...");
+            Console.ReadLine();
+            Console.WriteLine("I bet you want to go back to the main menu huh?");
+            Console.ReadLine();
+            Console.WriteLine("My bad.");
+            Console.ReadLine();
+            Console.WriteLine("Here you go:");
+            Console.ReadLine();
+        }
+
         /// \\\ CLASSROOM METHODS \\\ ///
 
         public void AddClassroom()
