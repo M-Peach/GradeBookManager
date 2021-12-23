@@ -35,20 +35,24 @@ namespace GradeBookManager
 
             Console.WriteLine();
 
-            Console.WriteLine($"Added: {gradeNumber}% to {AssignmentName}");
+            Console.WriteLine($"Added: {gradeNumber.Grade}% to {AssignmentName}");
 
             Console.WriteLine();
-
         }
-
         public void ShowGrade()
         {
-            foreach (AssignmentGrade grade in assignmentGrades)
+            if(assignmentGrades.Count == 0)
             {
-                Console.WriteLine($"{AssignmentName} : {grade.Grade}");
+                Console.WriteLine(AssignmentName);
+            }
+            else
+            {
+                foreach (AssignmentGrade grade in assignmentGrades)
+                {
+                    Console.WriteLine($"{AssignmentName} : {grade.Grade}%");
+                }
             }
         }
-
         public bool IsGraded()
         {
             foreach(AssignmentGrade grade in assignmentGrades)
@@ -64,7 +68,6 @@ namespace GradeBookManager
             }
             return false;
         }
-
         public double ReturnGrade()
         {
             foreach(AssignmentGrade grade in assignmentGrades)

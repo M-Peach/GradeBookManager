@@ -9,13 +9,11 @@ namespace GradeBookManager
     public class Student
     {
         public List<Assignment> assignments = new List<Assignment>();
-
         public Student()
         {
             assignments = new List<Assignment>();
         }
         public string Name { get; set; }
-
         public void AddAssignment()
         {
             bool loop;
@@ -40,7 +38,7 @@ namespace GradeBookManager
 
                 Console.WriteLine();
 
-                Console.WriteLine($"Added: {assignment} to {Name}");
+                Console.WriteLine($"Added: {assignment.AssignmentName} to {Name}");
 
                 Console.WriteLine();
 
@@ -57,36 +55,31 @@ namespace GradeBookManager
         }
         public void ShowAssignment()
         {
-            Console.Clear();
-
-            foreach (Assignment assignment in assignments)
+            foreach(Assignment assignment in assignments)
             {
-                    Console.WriteLine(assignment.AssignmentName);
+                assignment.ShowGrade();
             }
         }
-
         public void DeleteAssignment()
         {
             Console.Clear();
 
             Console.WriteLine("Remove Assignment Menu:");
 
-            Console.WriteLine();
+            Console.WriteLine(); 
+            
+            Console.WriteLine("Enter a Student Name:");
 
-            for (int i = 0; i < assignments.Count; i++)
+            string userInput = Console.ReadLine();
+
+            for (var i = 0; i < assignments.Count; i++)
             {
-                Console.WriteLine($"ID: {i} : {assignments[i].AssignmentName}");
+                if (assignments[i].AssignmentName.Equals(userInput))
+                {
+                    assignments.RemoveAt(i);
+                }
             }
-
-            Console.WriteLine();
-
-            Console.WriteLine("Enter a Assignment ID:");
-
-            int userInput = int.Parse(Console.ReadLine());
-
-            assignments.RemoveAt(userInput);
         }
-
         public void SelectAssignment()
         {
             Console.Clear();
@@ -98,7 +91,6 @@ namespace GradeBookManager
 
             bool loop = false;
 
-
             foreach (var assignment in assignments)
             {
                 if (userSelection.Equals(assignment.AssignmentName))
@@ -109,12 +101,10 @@ namespace GradeBookManager
 
                     return;
                 }
-
                 else { loop = true; }
 
             }
         }
-
         public bool Completed()
         {
             bool r = false;
@@ -136,17 +126,15 @@ namespace GradeBookManager
         {
             List<double> allGrades = new List<double>();
 
-            if(assignments.Count > 0)
+            if(assignments.Count < 0)
             {
                 Console.WriteLine("ERROR: No Grades");
                 return 0;
             }
-
             foreach (var assignment in assignments)
             {
                 allGrades.Add(assignment.ReturnGrade());
             }
-
             double sAvg = allGrades.Average();
 
             return sAvg;
@@ -172,7 +160,6 @@ namespace GradeBookManager
             {
                 Console.WriteLine($"Student Average : {StudentAverage()}%");
             }
-
             Console.WriteLine($"All Assignments Completed: {complete}");
 
             Console.WriteLine("A '0%' may indicate a grade has not yet been added for this student.");
@@ -205,7 +192,6 @@ namespace GradeBookManager
         public double TopAssignment()
         {
             double i = 0;
-            string a = null;
 
             foreach(var assignment in assignments)
             {
@@ -216,11 +202,9 @@ namespace GradeBookManager
             }
             return i;
         }
-
         public double LowAssignment()
         {
             double i = 900;
-            string a = null;
 
             foreach (var assignment in assignments)
             {
@@ -243,7 +227,6 @@ namespace GradeBookManager
                 {
                     i = assignment.ReturnGrade();
                     a = assignment.AssignmentName;
-
                 }
             }
             Console.WriteLine($"Lowest Assignment Grade: {i}% on {a}");

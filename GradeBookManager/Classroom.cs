@@ -10,7 +10,6 @@ namespace GradeBookManager
     {
         public string ClassName { get; set; }
 
-
         public List<Student> students = new List<Student>();
 
         public Classroom ()
@@ -42,7 +41,7 @@ namespace GradeBookManager
 
                 Console.WriteLine();
 
-                Console.WriteLine($"Added: {student} to {ClassName}");
+                Console.WriteLine($"Added: {student.Name} to {ClassName}");
 
                 Console.WriteLine();
 
@@ -56,9 +55,7 @@ namespace GradeBookManager
                 }
                 else { return; }
             }
-
         }
-
         public void ShowStudent()
         {
             Console.Clear();
@@ -68,7 +65,6 @@ namespace GradeBookManager
                 Console.WriteLine(student.Name);
             }
         }
-
         public void RemoveStudent()
         {
             Console.Clear ();
@@ -77,13 +73,13 @@ namespace GradeBookManager
 
             Console.WriteLine();
 
-            Console.WriteLine("Enter a Student ID:");
+            Console.WriteLine("Enter a Student Name:");
 
             string userInput = Console.ReadLine();
 
             for (int i = 0; i < students.Count; i++)
             {
-                if (students[i].Equals(userInput))
+                if (students[i].Name.Equals(userInput))
                 {
                     students.RemoveAt(i);
                 }
@@ -91,7 +87,6 @@ namespace GradeBookManager
 
             Console.WriteLine($"Removed {userInput}");
         }
-
         public void StudentSelectionMenu()
         {
             Console.Clear();
@@ -117,10 +112,7 @@ namespace GradeBookManager
 
                     return;
                 }
-
                 else { loop = true; }
-
-
             }
 
             if (loop == true)
@@ -128,7 +120,6 @@ namespace GradeBookManager
                 Console.WriteLine("ERROR");
             }
         }
-
         public void StudentDetailsMenu(Student selectedStudent)
         {
             Console.Clear();
@@ -185,7 +176,6 @@ namespace GradeBookManager
                 }
             }
         }
-
         public void ClassAverage()
         {
             Console.Clear();
@@ -194,7 +184,6 @@ namespace GradeBookManager
             {
                 allstudents.Add(student.StudentAverage());
             }
-
             double sAvg =  allstudents.Average();
 
             Console.WriteLine($"Classroom Average: {sAvg}%");
@@ -203,38 +192,21 @@ namespace GradeBookManager
             Console.ReadLine();
             Console.Clear();
         }
-
         public void TopStudent()
         {
             Console.Clear();
             double i = 0;
             string a = null;
-            double ii = 0;
-            string aa = null;
-
-            foreach (var student in students)
-            {
-                if (student.TopAssignment() > i)
-                {
-                    i = student.TopAssignment();
-                    a = student.Name;
-
-                }
-            }
-            Console.WriteLine($"Highest Assignment Grade: {i}% on {a}");
-            Console.WriteLine();
 
             foreach (var student in students)
             {
                 if (student.StudentAverage() > i)
                 {
-                    ii = student.StudentAverage();
-                    aa = student.Name;
-
+                    i = student.StudentAverage();
+                    a = student.Name;
                 }
             }
-
-            Console.WriteLine($"Highest Average Grade: {ii}% : {aa}");
+            Console.WriteLine($"Highest Average Grade: {i}% : {a}");
             Console.WriteLine();
             Console.WriteLine("Press ENTER to Continue:");
             Console.ReadLine();
@@ -254,7 +226,6 @@ namespace GradeBookManager
                 {
                     i = student.LowAssignment();
                     a = student.Name;
-
                 }
             }
             Console.WriteLine($"Lowest Assignment Grade: {i}% on {a}");
@@ -266,17 +237,14 @@ namespace GradeBookManager
                 {
                     ii = student.StudentAverage();
                     aa = student.Name;
-
                 }
             }
-
             Console.WriteLine($"Lowest Average Grade: {ii}% : {aa}");
             Console.WriteLine();
             Console.WriteLine("Press ENTER to Continue:");
             Console.ReadLine();
             Console.Clear();
         }
-
         public void StudentCompare()
         {
             Console.Clear();
@@ -321,7 +289,6 @@ namespace GradeBookManager
                 Console.WriteLine($"{s22} : {s2}%");
                 Console.WriteLine($"{s11} : {s1}%");
             }
-
         }
     }
 }

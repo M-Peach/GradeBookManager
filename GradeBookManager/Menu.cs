@@ -14,7 +14,6 @@ namespace GradeBookManager
         {
             classrooms = new List<Classroom>();
         }
-
         public void MainMenu()
         {
             bool loop = true;
@@ -58,7 +57,6 @@ namespace GradeBookManager
                 Console.ReadLine();
             }
         }
-
         public void ClassroomSelectionMenu()
         {
             Console.Clear();
@@ -70,7 +68,6 @@ namespace GradeBookManager
             var selectedClass = new Classroom();
 
             bool loop = false;
-
 
                 foreach (var classroom in classrooms)
                 {
@@ -93,7 +90,6 @@ namespace GradeBookManager
                 Console.WriteLine("ERROR");
                 }
         }
-
         public void DetailsMenu(Classroom selectedClass)
         {
             Console.Clear();
@@ -157,7 +153,6 @@ namespace GradeBookManager
                         loop = false;
                         return;
                         break;
-
                 }
             }
         }
@@ -182,7 +177,6 @@ namespace GradeBookManager
                     break;
             }
         }
-
         public void Credits()
         {
             Console.WriteLine("Press ENTER:");
@@ -210,10 +204,8 @@ namespace GradeBookManager
         }
 
         /// \\\ CLASSROOM METHODS \\\ ///
-
         public void AddClassroom()
         {
-
             Console.Clear();
             Console.WriteLine("Enter Class Name:");
 
@@ -225,7 +217,6 @@ namespace GradeBookManager
 
             classrooms.Add(classroom);
         }
-
         public void ShowClassroom()
         {
             Console.Clear();
@@ -235,11 +226,9 @@ namespace GradeBookManager
                 Console.WriteLine($"Classroom Name: {classrooms[i].ClassName}");
             }
         }
-
         public void RemoveClassroom()
         {
             Console.Clear();
-
             ShowClassroom();
             Console.WriteLine();
             Console.WriteLine("Type the Name of the Classroom to Remove:");
