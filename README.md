@@ -1,4 +1,9 @@
-# GradeBookManager
+Grade Book Manager
 
-C# console app that allows you to add multiple classrooms, students to a classroom, assignments to a student, and grades to assignments. 
-You may also veiw data such as the highest grades, student averages, class averages and more. 
+This C# Console App Grade Book Manager uses no SQL.
+
+Features:
+- Add, Edit, Delete Indivdual Classrooms, Students, Assignments, and Grades
+- View Grade Averages by Student or Classroom
+- View Highest and Lowest Grades By Student or Classroom
+- Save Data to txt (Load Data by txt not implemented)
